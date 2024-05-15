@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import senfioLogo from './Senfio.png'; 
+import senfioLogo from './Senfio-White.png'; 
 
 function App() {
   const [username, setUsername] = useState('');
@@ -19,7 +19,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" id="box">
       <h1>LOGIN</h1>
       <img src={senfioLogo} id="imagem_logo" alt="Senfio"/>
       <form onSubmit={handleSubmit}>
