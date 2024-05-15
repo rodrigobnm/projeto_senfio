@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import senfioLogo from './Senfio.png'; 
 
 function App() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>LOGIN</h1>
+      <img src={senfioLogo} id="imagem_logo" alt="Senfio"/>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
+        <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }
