@@ -1,32 +1,51 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './App.css';
-import senfioLogo from './Senfio-White.png'; 
 
 function App() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    try {
+      const response = await axios.post('/login/', {
+        username: email,
+        password: password
+      });
+      
+      if (response.data.success) {
+        // Login bem-sucedido
+        window.location.href = '/entrou'; // Redirecionar para a página de sucesso
+      } else {
+        // Exibir mensagem de erro
+        setError(response.data.message);
+      }
+    } catch (error) {
+      // Exibir mensagem de erro genérico
+      setError('Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.');
+    }
   };
 
   return (
     <div className="App" id="box">
       <h1>LOGIN</h1>
-      <img src={senfioLogo} id="imagem_logo" alt="Senfio"/>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
+        <input type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
         <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
         <button type="submit">Login</button>
       </form>
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }
