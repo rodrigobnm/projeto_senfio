@@ -9,20 +9,19 @@ def entrou(request):
     return render(request, 'entrou.html')
 
 
-def login(request):
+def login_view(request):
     if request.method == 'POST':
-        data = request.POST 
-        email = data.get('username')  # Recebendo o email do frontend
-        password = data.get('password')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-        # Verificar se o email segue o formato desejado
-        if not re.match(r'^[a-zA-Z0-9._%+-]+@senfio\.com$', email):
-            return JsonResponse({'success': False, 'message': 'Por favor, insira um email válido no formato nome.sobrenome@senfio.com'})
+        # Adicione logs de depuração para verificar os dados recebidos
+        print("Dados recebidos - Username:", username)
+        print("Dados recebidos - Password:", password)
 
-        if email == 'admin@senfio.com' and password == 'admin':  # Ajuste as credenciais conforme necessário
-            return JsonResponse({'success': True})
+        # Verificação de nome de usuário e senha
+        if username == 'rodrigo' and password == 'rodrigo':
+            return JsonResponse({'success': True, 'message': 'Login bem-sucedido!'})
         else:
-            return JsonResponse({'success': False, 'message': 'Credenciais inválidas'})
-
-    # Adicione um retorno padrão para o caso de a solicitação não ser POST
-    return JsonResponse({'success': False, 'message': 'Método de solicitação não suportado'})
+            return JsonResponse({'success': False, 'message': 'Credenciais inválidas.'})
+    else:
+        return JsonResponse({'success': False, 'message': 'Método de solicitação não suportado.'})

@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './App.css';
 import senfioLogo from './Senfio-White.png'; 
 import axios from 'axios';
 
-const csrftoken = getCookie('csrftoken');
-console.log(csrftoken); 
-
-// Função para obter o valor do cookie
-function getCookie(name) {
-  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-  return cookieValue ? cookieValue.pop() : '';
-}
-
 function App() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -29,9 +18,10 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
+    const csrftoken = getCookie('csrftoken'); // Obter o token CSRF dinamicamente
+
     try {
       // Faça uma requisição POST para a sua view do Django
-
       const response = await axios.post('/api/login/', { username, password }, {
         headers: {
           'X-CSRFToken': csrftoken
@@ -49,14 +39,20 @@ function App() {
   return (
     <div className="App" id="box">
       <h1>LOGIN</h1>
+      <img src={senfioLogo} id="imagem_logo" alt="Senfio"/>
       <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+        <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
         <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
         <button type="submit">Login</button>
       </form>
-      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }
 
 export default App;
+
+// Função para obter o valor do cookie
+function getCookie(name) {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop() : '';
+}
