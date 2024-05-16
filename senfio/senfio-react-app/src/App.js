@@ -41,8 +41,8 @@ function App() {
       <h1>LOGIN</h1>
       <img src={senfioLogo} id="imagem_logo" alt="Senfio"/>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange} />
-        <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+        <input type="text" placeholder="Username" name="username" value={username} onChange={handleUsernameChange} />
+        <input type="password" placeholder="Password" name="password" value={password} onChange={handlePasswordChange} />
         <button type="submit">Login</button>
       </form>
     </div>
