@@ -47,5 +47,5 @@ def login_view(request):
                 return JsonResponse({'success': True, 'message': 'Foi! '})
             else:
                 print("Usuário ou senha incorretos.")
-                return JsonResponse({'success': False, 'message': 'Foi! '})
+                return JsonResponse({'success': False, 'message': 'Erro, Usuário ou senha incorretos! '})
             
