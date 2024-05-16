@@ -30,6 +30,12 @@ function App() {
   
       // Verifique a resposta, faça algo com ela se necessário
       console.log(username, password);
+
+    if (response.data.success) {
+       // Se o login for bem-sucedido, redirecione para a página '/entrou/'
+       window.location.href = '/entrou/';
+     }
+
     } catch (error) {
       // Lide com erros de requisição, exibindo mais detalhes sobre o erro
       console.error('Erro ao fazer login:', error.response.data);

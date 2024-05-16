@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return render(request, 'index.html')
@@ -11,6 +12,7 @@ def index(request):
 def entrou(request):
     return render(request, 'entrou.html')
 
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -28,8 +30,7 @@ def login_view(request):
                 return JsonResponse({'success': False, 'message': 'O email deve conter nome e sobrenome separados por ponto antes do domínio.'})
             elif len(password) < 8:
                 return JsonResponse({'success': False, 'message': 'A senha deve conter no mínimo 8 caracteres.'})
-            else:
-                # Redirecionar para a página entrou.html se o login for bem-sucedido
-                print("\nboa\n")
-                return redirect('/entrou/')
-    return render(request, 'login_view.html')
+        else:
+            # Redirecionar para a página entrou.html se o login for bem-sucedido
+            print("\nboa\n")
+            return JsonResponse({'success': True, 'message': 'Foi! '})
