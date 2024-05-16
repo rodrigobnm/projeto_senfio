@@ -8,8 +8,8 @@ from .models import User as UserModel
 def index(request):
     return render(request, 'index.html')
 
-def entrou(request):
-    return render(request, 'entrou.html')
+def home(request):
+    return render(request, 'home.html')
 
 @csrf_exempt
 def login_view(request):

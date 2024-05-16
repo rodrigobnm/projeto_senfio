@@ -30,7 +30,7 @@ function App() {
       console.log(username, password);
 
     if (response.data.success) {
-       window.location.href = '/entrou/';
+       window.location.href = '/home/';
      }else{
       document.getElementById('erro').innerText = 'Credenciais Inválidas, Tente novamente!';
      }
