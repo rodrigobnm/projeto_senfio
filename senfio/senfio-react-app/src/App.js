@@ -34,6 +34,9 @@ function App() {
     if (response.data.success) {
        // Se o login for bem-sucedido, redirecione para a página '/entrou/'
        window.location.href = '/entrou/';
+     }else{
+      // Modifique o conteúdo do elemento h3 com o id "erro"
+      document.getElementById('erro').innerText = 'Credenciais erradas, Tente novamente!';
      }
 
     } catch (error) {
@@ -50,6 +53,7 @@ function App() {
         <input type="text" placeholder="Username" name="username" value={username} onChange={handleUsernameChange} />
         <input type="password" placeholder="Password" name="password" value={password} onChange={handlePasswordChange} />
         <button type="submit">Login</button>
+        <h3 id='erro'></h3>
       </form>
     </div>
   );

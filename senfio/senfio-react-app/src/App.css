@@ -40,6 +40,12 @@ h1 {
   text-align: center;
 }
 
+#erro{
+  width: 100%;
+  max-width: 200px;
+  color: red;
+}
+
 form {
   display: flex;
   flex-direction: column;

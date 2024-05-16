@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse, HttpResponseRedirect
 import json
 from django.views.decorators.csrf import csrf_exempt
+from .models import User as UserModel
 
 def index(request):
     return render(request, 'index.html')
@@ -33,4 +34,6 @@ def login_view(request):
         else:
             # Redirecionar para a página entrou.html se o login for bem-sucedido
             print("\nboa\n")
+            salvando_login = UserModel(username = username,password=password)
+            salvando_login.save()
             return JsonResponse({'success': True, 'message': 'Foi! '})
