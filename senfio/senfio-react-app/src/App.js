@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './App.css';
-<<<<<<< Updated upstream
-=======
 import senfioLogo from './Senfio-White.png'; 
 import axios from 'axios';
 
@@ -14,7 +12,6 @@ function getCookie(name) {
   const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
   return cookieValue ? cookieValue.pop() : '';
 }
->>>>>>> Stashed changes
 
 function App() {
   const [email, setEmail] = useState('');
@@ -31,25 +28,6 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-<<<<<<< Updated upstream
-    
-    try {
-      const response = await axios.post('/login/', {
-        username: email,
-        password: password
-      });
-      
-      if (response.data.success) {
-        // Login bem-sucedido
-        window.location.href = '/entrou'; // Redirecionar para a página de sucesso
-      } else {
-        // Exibir mensagem de erro
-        setError(response.data.message);
-      }
-    } catch (error) {
-      // Exibir mensagem de erro genérico
-      setError('Ocorreu um erro ao fazer login. Por favor, tente novamente mais tarde.');
-=======
   
     try {
       // Faça uma requisição POST para a sua view do Django
@@ -65,7 +43,6 @@ function App() {
     } catch (error) {
       // Lide com erros de requisição, exibindo mais detalhes sobre o erro
       console.error('Erro ao fazer login:', error.response.data);
->>>>>>> Stashed changes
     }
   };
 
