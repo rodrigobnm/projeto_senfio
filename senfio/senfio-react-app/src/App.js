@@ -18,29 +18,24 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    const csrftoken = getCookie('csrftoken'); // Obter o token CSRF dinamicamente
+    const csrftoken = getCookie('csrftoken'); 
 
     try {
-      // Faça uma requisição POST para a sua view do Django
       const response = await axios.post('/api/login/', { username, password }, {
         headers: {
           'X-CSRFToken': csrftoken
         }
       });
   
-      // Verifique a resposta, faça algo com ela se necessário
       console.log(username, password);
 
     if (response.data.success) {
-       // Se o login for bem-sucedido, redirecione para a página '/entrou/'
        window.location.href = '/entrou/';
      }else{
-      // Modifique o conteúdo do elemento h3 com o id "erro"
       document.getElementById('erro').innerText = 'Credenciais Inválidas, Tente novamente!';
      }
 
     } catch (error) {
-      // Lide com erros de requisição, exibindo mais detalhes sobre o erro
       console.error('Erro ao fazer login:', error.response.data);
     }
   };

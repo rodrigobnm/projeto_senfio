@@ -20,7 +20,6 @@ def login_view(request):
         username = data["username"]
         password = data["password"]
 
-        # Adicione logs de depuração para verificar os dados recebidos
         print("Dados recebidos - Username:", username)
         print("Dados recebidos - Password:", password)
         
@@ -32,7 +31,6 @@ def login_view(request):
             elif len(password) < 8:
                 return JsonResponse({'success': False, 'message': 'A senha deve conter no mínimo 8 caracteres.'})
         else:
-            # Redirecionar para a página entrou.html se o login for bem-sucedido
             def verificar_login(username, password):
                 try:
                     usuario = UserModel.objects.get(username=username, password=password)
