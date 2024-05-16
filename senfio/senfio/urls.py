@@ -6,5 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('entrou/', views.entrou, name='entrou'),
-    path('login/', views.login, name='login'),
-]
+    path('api/login/', views.login_view, name='login'),
+]d
