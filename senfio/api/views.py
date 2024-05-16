@@ -33,7 +33,21 @@ def login_view(request):
                 return JsonResponse({'success': False, 'message': 'A senha deve conter no mínimo 8 caracteres.'})
         else:
             # Redirecionar para a página entrou.html se o login for bem-sucedido
-            print("\nboa\n")
-            salvando_login = UserModel(username = username,password=password)
-            salvando_login.save()
-            return JsonResponse({'success': True, 'message': 'Foi! '})
+            def verificar_login(username, password):
+                try:
+                    usuario = UserModel.objects.get(username=username, password=password)
+                    return True, usuario 
+                except UserModel.DoesNotExist:
+                    return False, None  
+
+            u = username
+            p = password
+            login_valido, usuario = verificar_login(u, p)
+
+            if login_valido:
+                print("Login válido para o usuário:", usuario.username)
+                return JsonResponse({'success': True, 'message': 'Foi! '})
+            else:
+                print("Usuário ou senha incorretos.")
+                return JsonResponse({'success': False, 'message': 'Foi! '})
+            

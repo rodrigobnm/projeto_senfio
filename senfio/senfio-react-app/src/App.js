@@ -36,7 +36,7 @@ function App() {
        window.location.href = '/entrou/';
      }else{
       // Modifique o conteúdo do elemento h3 com o id "erro"
-      document.getElementById('erro').innerText = 'Credenciais erradas, Tente novamente!';
+      document.getElementById('erro').innerText = 'Credenciais Inválidas, Tente novamente!';
      }
 
     } catch (error) {
