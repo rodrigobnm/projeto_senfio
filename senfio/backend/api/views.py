@@ -5,15 +5,11 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .models import User as UserModel
 
-def index(request):
-    return render(request, 'index.html')
-
-def home(request):
-    return render(request, 'home.html')
-
 @csrf_exempt
 def login_view(request):
+    print(request.method)
     if request.method == 'POST':
+        print("\ntesteteste\n")
         data = json.loads(request.body)
         username = data["username"]
         password = data["password"]

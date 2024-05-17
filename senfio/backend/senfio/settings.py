@@ -15,7 +15,9 @@ SECRET_KEY = 'django-insecure-2l&b2dpeze_*lf)id!2j6(-@n_nt6gb^ijyx@wv=!11w0z3m%%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "*"
+]
 
 
 # Application definition
@@ -28,9 +30,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'corsheaders'
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -45,7 +52,6 @@ ROOT_URLCONF = 'senfio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'senfio-react-app/build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,10 +113,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
-STATICFILES_DIRS = [
-    os.path.join(os.path.join(BASE_DIR, 'senfio-react-app/build/static'))
-]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

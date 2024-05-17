@@ -21,12 +21,12 @@ function App() {
     const csrftoken = getCookie('csrftoken'); 
 
     try {
-      const response = await axios.post('/api/login/', { username, password }, {
+      const response = await axios.post('http://localhost:8000/api/login/', { username, password }, {
         headers: {
           'X-CSRFToken': csrftoken
         }
       });
-  
+      
       console.log(username, password);
 
     if (response.data.success) {
