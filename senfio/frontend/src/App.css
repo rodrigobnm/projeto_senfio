@@ -47,6 +47,10 @@ h1 {
   font-size: 9pt;
 }
 
+#bem-vindo-mensagem{
+  color: black;
+}
+
 form {
   display: flex;
   flex-direction: column;
